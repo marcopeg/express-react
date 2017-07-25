@@ -309,3 +309,77 @@ https://github.com/cdebotton/react-universal/blob/master/.flowconfig
 
 Aliases conflicts also with ESLint, we use `eslint-plugin-import` with
 `eslint-import-resolver-webpack` to fix it.
+
+---
+
+
+
+# HowTo...
+
+## How to start a single service?
+
+Say you want to work on the server without the client or on the client without the server being running:
+
+### Method 1: local env file
+
+Create a new text file `.env.local` in your project root and extend the `HUMBLE_ENV` definition in it:
+
+```
+HUMBLE_ENV=dev-server
+```
+
+(replace "dev-server" with the service you want to run. You can concatenate multiple services using a column: `HUMBLE_ENV=dev-server:dev-client`)
+
+### Method 2: CLI Override
+
+The variable `HUMBLE_ENV` can be forced via command line, try to run this on your terminal (from the project root):
+
+```
+HUMBLE_ENV=dev-client humble boot
+```
+(also in this case you can run multiple services)
+
+## How to run the client app from Node?
+
+You may want to skip Docker if you work only on the client and you feel Docker is slowing down your Mac a bit. This is totally possible.
+
+#### 1. Node version
+
+The client uses node version `8.1.x`, I saw the client running with `6.4.x` but I strongly suggest you update to the lastest available node.
+
+You may want to consider installing node via [NVM](https://github.com/creationix/nvm).
+
+If you have an older version of node running consider a [full cleanup](https://stackoverflow.com/questions/11177954/how-do-i-completely-uninstall-node-js-and-reinstall-from-beginning-mac-os-x) and then install it over via NVM.
+
+#### 2. Yarn
+
+We are using Yarn instead of NPM. It feels more reliable and a little faster.  
+[install yarn](https://yarnpkg.com/en/docs/install)
+
+#### 3. Client Root
+
+Move into `/services/frontend/client`, I will refer to this folder as the **client root**.
+
+#### 4. Install dependencies
+
+```
+rm -rf node_modules
+yarn install
+```
+
+#### 5. Start scripts
+
+```
+# Run development setup
+yarn start
+
+# Run styleguide
+yarn start:styleguide
+
+# Run production build
+yarn serve
+
+# Run quality checks
+yarn flow
+yarn lint
+```
