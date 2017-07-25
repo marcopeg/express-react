@@ -1,5 +1,5 @@
 import React from 'react'
-import createHistory from 'history/createBrowserHistory'
+import createHistory from 'history/createHashHistory'
 import { Router, Route } from 'react-router-dom'
 
 import MuiTheme from 'root/material-ui'
@@ -33,7 +33,6 @@ const Root = () => (
             <div>
 
                 <Route exact path={'/'} render={renderMenu} />
-
                 <Route exact path={'/all'} render={renderAll} />
 
                 {components.map(({ path, ...props }) => (

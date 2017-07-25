@@ -19,17 +19,21 @@ const node = require('./webpack/node')
 /* eslint-disable */
 hash.configure({ right: true, maxLength: 10 })
 
+let componentName = filePath => {
+    let name = path.basename(filePath)
+    return name.replace('.styleguide.jsx', '')
+}
+
 let componentRoute = filePath => {
     const token = hash.digest(filePath)
-    let name = path.basename(filePath)
-    name = name.replace('.styleguide.jsx', '')
+    const name = componentName(filePath)
     return `/${token}/${name}`
 }
 
 let styleguide = glob.sync(path.join(config.path.src, '**/*.styleguide.js?(x)'))
     .map(filePath => path.relative(config.path.src, filePath))
     .map(filePath => ({
-        name: path.basename(filePath),
+        name: componentName(filePath),
         path: componentRoute(filePath),
         component: filePath,
     }))
