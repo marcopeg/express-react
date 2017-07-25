@@ -1,0 +1,12 @@
+# Environment Files
+!.env
+.env.*
+
+# Data Folders
+node_modules
+
+# NPM Related Files
+yarn.lock
+yarn-error.log
+package-lock.json
+npm-debug.log

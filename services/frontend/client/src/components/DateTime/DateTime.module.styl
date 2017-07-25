@@ -1,0 +1,21 @@
+/**
+ * Module Stylesheet
+ * ===
+ *
+ * Classes that are defined in this file will be scoped so you are free to
+ * use whathever name you may like.
+ *
+ * Remember that CSS modules don't protect from properties leaks!
+ * (https://github.com/css-modules/css-modules)
+ */
+
+// Import Twitter Bootstrap variables for a uniform theming
+@import "bootstrap-variables"
+
+// class "date-time" was already defined in the global CSS definition but
+// thanks to the CSS modules we can re-declare it here without naming issues :-)
+.date-time
+    background: $gray-lighter
+
+.value
+    margin-left: 2px

@@ -1,0 +1,7 @@
+
+.counter {
+    background: blue;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-around;
+}

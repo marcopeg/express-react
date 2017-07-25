@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name=viewport content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=1">
+        <title>App - Development</title>
+
+        <!-- iOS -->
+        <meta name="apple-mobile-web-app-title" content="App - Development">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+    </head>
+    <body>
+        <div id="react-root"></div>
+
+        <!-- Populate app's initialState -->
+        <script>
+        window._initialState = {
+            settings: {
+                name: 'Custom App'
+            }
+        }
+        </script>
+
+        <!-- Pass additional info to the app -->
+        <script>
+        window._sharedData = {
+            app_name: 'Custom App (shared)'
+        }
+        </script>
+
+        <!-- Main -->
+        <script src="/vendor.js"></script>
+        <script src="/app.js"></script>
+    </body>
+</html>

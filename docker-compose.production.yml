@@ -1,0 +1,14 @@
+version: '2'
+services:
+    server:
+        build:
+            context: ./services/frontend
+            dockerfile: Dockerfile
+        ports:
+            - ${SERVER_PORT}:${SERVER_PORT}
+        environment:
+            NODE_ENV: production
+            LOG_LEVEL: ${LOG_LEVEL}
+            SERVER_PORT: ${SERVER_PORT}
+            SERVER_NAME: ${SERVER_NAME}
+        restart: always
