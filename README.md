@@ -37,15 +37,17 @@ You only need Docker to run this project.
 All NodeJS magic is wrapped into containers for you
 
 - [docker & docker-compose](https://www.docker.com/)
-- [humbleCLI](https://github.com/marcopeg/humble-cli)
+- [humble-cli](https://github.com/marcopeg/humble-cli)
 
 ## Humble CLI - Utility Scripts
 
-HumbleCLI facilitates your job with utility scripts that can access the
+> HumbleCLI facilitates your Docker job with utility scripts that can access the
 environment context.
 
 You run each script as `humble {script-name}` where `{script-name}` is the
 name of the script you want to execute from the `/scripts` folder.
+
+Here are a couple of examples
 
 ### boot
 
@@ -74,6 +76,11 @@ humble ssh server
 You may need this to add `NPM` dependencies to the project.
 
 ### get-version
+
+```
+humble get-version
+> 0.0.3
+```
 
 ### bump-version
 
@@ -111,7 +118,7 @@ $> yarn flow
 
 ## Atom
 
-I suggest you to install the following plugins:
+I suggest you install the following plugins:
 
 - Nuclide
 - language-babel
@@ -325,17 +332,18 @@ Say you want to work on the server without the client or on the client without t
 Create a new text file `.env.local` in your project root and extend the `HUMBLE_ENV` definition in it:
 
 ```
-HUMBLE_ENV=dev-server
+# File: .env.local
+HUMBLE_ENV=dev.server
 ```
 
-(replace "dev-server" with the service you want to run. You can concatenate multiple services using a column: `HUMBLE_ENV=dev-server:dev-client`)
+(replace "dev.server" with the service you want to run. You can concatenate multiple services using a column: `HUMBLE_ENV=dev-server:dev-client`)
 
 ### Method 2: CLI Override
 
 The variable `HUMBLE_ENV` can be forced via command line, try to run this on your terminal (from the project root):
 
 ```
-HUMBLE_ENV=dev-client humble boot
+HUMBLE_ENV=dev.client humble boot
 ```
 (also in this case you can run multiple services)
 
