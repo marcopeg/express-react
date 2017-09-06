@@ -11,6 +11,7 @@ import { routerReducer, routerMiddleware as createRouterMiddleware } from 'react
 import { createInjectSagasStore as createStore, sagaMiddleware as reduxSaga } from 'redux-sagas-injector'
 
 import { configSagas, rootSaga } from './sagas'
+import { configServices } from './services'
 import reducers from './reducers'
 import history from './history'
 
@@ -30,6 +31,7 @@ if (process.env.NODE_ENV === 'production') {
     const enhanceWith = applyMiddleware(reduxThunk, reduxSaga, routerMiddleware)
     const middlewares = composeEnhancers(enhanceWith)
     __store = createStore(rootReducer, rootSaga, initialState, middlewares)
+    configServices(__store)
     configSagas(reduxSaga)
 
 // -- Development --
@@ -38,6 +40,7 @@ if (process.env.NODE_ENV === 'production') {
     const enhanceWith = applyMiddleware(reduxThunk, reduxSaga, routerMiddleware)
     const middlewares = devComposeEnhancers(enhanceWith)
     __store = createStore(rootReducer, rootSaga, initialState, middlewares)
+    configServices(__store)
     configSagas(reduxSaga)
 }
 

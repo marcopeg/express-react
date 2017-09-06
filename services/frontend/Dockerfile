@@ -10,6 +10,7 @@ RUN yarn install
 # Test server quality checks
 RUN yarn lint
 RUN yarn flow
+RUN yarn test
 
 # Install client libs
 WORKDIR /usr/src/client/
@@ -17,7 +18,7 @@ RUN yarn install
 
 # Test client quality checks
 RUN yarn lint
-#RUN yarn flow
+RUN yarn flow
 
 # Compile and copy client-side assets
 RUN yarn build

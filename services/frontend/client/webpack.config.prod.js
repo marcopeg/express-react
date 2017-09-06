@@ -29,7 +29,7 @@ module.exports = {
     },
 
     output: {
-        path: path.resolve(__dirname, 'dist'),
+        path: config.path.dist,
         publicPath: '/',
         filename: `${pkg.name}_${pkg.version}_[name].js`,
         chunkFilename: `${pkg.name}_${pkg.version}_[name]_[chunkhash].js`,

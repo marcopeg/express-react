@@ -1,13 +1,12 @@
-import init from './init-saga'
-import clock from './clock-saga'
+/* eslint global-require: off */
 
 const sagas = [
-    init,
-    clock,
+    require('./init-saga'),
+    require('./clock-saga'),
 ]
 
 export const configSagas = (reduxSaga) => {
-    sagas.map(saga => reduxSaga.run(saga))
+    sagas.map(saga => reduxSaga.run(saga.default))
 }
 
 // needed by the injector package
