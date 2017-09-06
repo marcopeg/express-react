@@ -5,20 +5,18 @@ import path from 'path'
 import cors from 'cors'
 import express from 'express'
 import bodyParser from 'body-parser'
+import cookieParser from 'cookie-parser'
 import compression from 'compression'
 
 // import project's libraries
 import { get as getConfig } from '../lib/config'
 
-// import project's middlewares
-import keepCalmAndSlowDown from '../middlewares/keep-calm-and-slow-down'
-
 // import project's routes
-import rootRouter from '../routes/root'
+import configRoutes from '../routes'
 
 const app = express()
 
-export const init = async ({ serverName }: ServerInitParams) => {
+export const init = async ({ serverName, cookieSecret }: ServerInitParams) => {
     app.set('name', serverName)
 
     // development setup
@@ -46,11 +44,11 @@ export const init = async ({ serverName }: ServerInitParams) => {
     app.use(express.static(path.join(__dirname, '..', '..', 'public')))
 
     // middlewares
-    app.use('/api', bodyParser.json())
-    app.use(keepCalmAndSlowDown())
+    app.use('/v1', bodyParser.json())
+    app.use('/v1', cookieParser(cookieSecret))
 
     // routes
-    app.use('/', keepCalmAndSlowDown(100), rootRouter)
+    configRoutes(app)
 }
 
 export const start = async ({ port }: ServerStartParams) => {

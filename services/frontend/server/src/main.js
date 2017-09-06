@@ -11,22 +11,26 @@ export async function start (): any {
     try {
         await initConfig()
         winston.level = getConfig('LOG_LEVEL')
+        winston.level = 'verbose'
 
-        // Init services
         await initVendorSrc()
         await initServer({
             serverName: String(getConfig('SERVER_NAME')),
+            cookieSecret: String(getConfig('SERVER_SECRET')),
         })
 
-        // Start services
+        winston.info('[boot] --> initialization completed with success :-)')
+
+        winston.verbose('[boot] start ExpressJS')
         await startServer({
             port: Number(getConfig('SERVER_PORT')),
         })
 
-        winston.info('Up and running...')
-    } catch (e) {
-        winston.error('Startup error')
-        winston.error(e)
+        winston.info('[boot] --> services warm up completed with success :-)')
+    } catch (err) {
+        winston.error('[boot] FATAL ERROR :-(')
+        winston.error(err.message)
+        winston.debug(err)
         process.exit(1)
     }
 }

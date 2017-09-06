@@ -11,5 +11,6 @@ services:
             LOG_LEVEL: ${LOG_LEVEL}
             SERVER_PORT: ${SERVER_PORT}
             SERVER_NAME: ${SERVER_NAME}
+            SERVER_SECRET: ${SERVER_SECRET}
         working_dir: /usr/src/app
         entrypoint: ["yarn", "run:dev"]

@@ -4,8 +4,10 @@ import type { $Request, $Response } from 'express'
 // import libraries
 import winston from 'winston'
 import express from 'express'
+import { get as getConfig } from '../lib/config'
 
 // import middlewares
+import keepCalmAndSlowDown from '../middlewares/keep-calm-and-slow-down'
 import { getSources } from '../services/vendor-src'
 
 /**
@@ -18,6 +20,7 @@ export default router
 // We suggest you declare a route and list all the middlewares that
 // should be involved plus the route handler in an array.
 router.get('/*', [
+    keepCalmAndSlowDown(),
     renderHomePage,
 ])
 
@@ -32,12 +35,12 @@ function renderHomePage (req: $Request, res: $Response) {
     winston.verbose('serve index page')
     res.render('index', {
         meta: {
-            title: 'React Express',
+            title: getConfig('SERVER_NAME'),
             node_env: process.env.NODE_ENV,
             src: getSources(),
         },
         shared_data: {
-            app_name: 'React Express',
+            app_name: getConfig('SERVER_NAME'),
             node_env: process.env.NODE_ENV,
         },
     })
