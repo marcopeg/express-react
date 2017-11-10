@@ -1,6 +1,6 @@
 // const EventEmitter = require('events');
 
-import { error as logError } from './logger'
+import logger from './logger'
 
 let listeners = []
 
@@ -16,7 +16,7 @@ export const reduxEventsMiddleware = store => next => (action) => {
                     listener.handler(action)(store.dispatch, store.getState)
                 }
             } catch (e) {
-                logError('Redux event handler error')
+                logger.error('Redux event handler error')
             }
         })
 
