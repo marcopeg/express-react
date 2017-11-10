@@ -1,19 +1,19 @@
 
 import Route from 'route-parser'
-import { verbose as loggerVerbose } from 'Lib/logger'
+import logger from 'Lib/logger'
 
 const routes = [
     {
         test: new Route('/gallery/:id'),
         action: ({ id }) => (dispatch) => {
-            loggerVerbose(`gallery picture ${id}`)
+            logger.verbose(`gallery picture ${id}`)
             dispatch({ type: 'showGalleryPicture', payload: id })
         },
     },
     {
         test: new Route('/gallery(/)'),
         action: () => () => {
-            loggerVerbose('gallery root')
+            logger.verbose('gallery root')
         },
     },
 ]
@@ -34,7 +34,7 @@ const onLocationChange = ({ payload }) => (dispatch) => {
             dispatch(action(match))
         }
     } catch (e) {
-        loggerVerbose('Path handler not found for:', pathname)
+        logger.verbose('Path handler not found for:', pathname)
     }
 }
 
