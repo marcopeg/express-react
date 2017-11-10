@@ -97,6 +97,7 @@
         "redux": "^3.7.2",
         "redux-injector": "^0.1.0",
         "redux-sagas-injector": "^0.1.0",
-        "redux-thunk": "^2.2.0"
+        "redux-thunk": "^2.2.0",
+        "route-parser": "^0.0.5"
     }
 }
